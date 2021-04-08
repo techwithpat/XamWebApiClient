@@ -17,6 +17,7 @@ namespace XamWebApiClient.Services
 
         public Task AddBook(Book book)
         {
+            book.Id = ++_books.Last().Id;
             _books.Add(book);
             return Task.CompletedTask;
         }
@@ -29,7 +30,7 @@ namespace XamWebApiClient.Services
 
         public Task<Book> GetBook(int id)
         {
-            var book = _books.SingleOrDefault(b => b.Id == id);
+            var book = _books.FirstOrDefault(b => b.Id == id);
             return Task.FromResult(book);
         }
 
@@ -40,8 +41,6 @@ namespace XamWebApiClient.Services
 
         public Task SaveBook(Book book)
         {
-            _books.Add(book);
-
             _books[_books.FindIndex(b => b.Id == book.Id)] = book;
             return Task.CompletedTask;
         }

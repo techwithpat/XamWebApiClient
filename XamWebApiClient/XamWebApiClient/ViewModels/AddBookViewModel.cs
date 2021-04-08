@@ -35,7 +35,7 @@ namespace XamWebApiClient.ViewModels
                     Description = Description
                 };
 
-                await _bookService.SaveBook(book);
+                await _bookService.AddBook(book);
 
                 MessagingCenter.Send(this, Constants.UpdateBooks);
 
