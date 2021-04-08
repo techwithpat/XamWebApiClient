@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamWebApiClient.Views.AddBook">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <StackLayout>
+                <Label Text="Title" />
+                <Entry Text="{Binding Title}" />
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Author" />
+                <Entry Text="{Binding Author}" />
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Description" />
+                <Editor Text="{Binding Description}" />
+            </StackLayout>
+
+            <Button Text="Save"
+                    Command="{Binding SaveBookCommand}" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
