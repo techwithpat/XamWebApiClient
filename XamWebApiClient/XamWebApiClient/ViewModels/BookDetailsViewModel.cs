@@ -20,10 +20,7 @@ namespace XamWebApiClient.ViewModels
         {
             _bookService = bookService;
 
-            SaveBookCommand = new Command(async () =>
-            {
-                await SaveBook();
-            });
+            SaveBookCommand = new Command(async () => await SaveBook());
         }
 
         private async Task SaveBook()
@@ -39,8 +36,6 @@ namespace XamWebApiClient.ViewModels
                 };
 
                 await _bookService.SaveBook(book);
-
-                MessagingCenter.Send(this, Constants.UpdateBooks);
 
                 await Shell.Current.GoToAsync("..");
             }

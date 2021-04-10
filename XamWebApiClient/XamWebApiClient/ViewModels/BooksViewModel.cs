@@ -21,20 +21,9 @@ namespace XamWebApiClient.ViewModels
 
             Books = new ObservableCollection<Book>();
 
-            MessagingCenter.Subscribe<AddBookViewModel>(this, Constants.UpdateBooks, a => 
-            {
-                PopulateBooks();
-            });
+            DeleteBookCommand = new Command<Book>(async b => await DeleteBook(b));
 
-            DeleteBookCommand = new Command<Book>(async b =>
-            {
-                await DeleteBook(b);
-            });
-
-            AddNewBookCommand = new Command(async () =>
-            {
-                await GoToAddbookView();
-            });
+            AddNewBookCommand = new Command(async () => await GoToAddbookView());
         }
 
         private async Task DeleteBook(Book b)
@@ -44,10 +33,8 @@ namespace XamWebApiClient.ViewModels
             PopulateBooks();
         }
 
-        private async Task GoToAddbookView()
-        {
-            await Shell.Current.GoToAsync(nameof(AddBook));
-        }
+        private async Task GoToAddbookView() 
+            => await Shell.Current.GoToAsync(nameof(AddBook));
 
         public async void PopulateBooks()
         {
